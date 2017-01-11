@@ -120,7 +120,7 @@ jlint: \
 	locks.o \
 	message_node.o \
 	method_desc.o
-	$(CPP) $(LFLAGS) -o jlint access_desc.o callee_desc.o class_desc.o graph.o jlint.o local_context.o locks.o message_node.o method_desc.o
+	$(CPP) -o jlint access_desc.o callee_desc.o class_desc.o graph.o jlint.o local_context.o locks.o message_node.o method_desc.o $(LFLAGS)
 
 access_desc.o: access_desc.cc \
 	access_desc.hh \

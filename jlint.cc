@@ -42,6 +42,7 @@ int   reported_message_mask = cat_all;
 FILE* history;
 string_pool stringPool;
 field_desc* is_const;
+bool  json_output = false;
 
 message_descriptor msg_table[] = 
   {
@@ -952,6 +953,7 @@ void usage()
 Usage: jlint {option|java_class_file}\n\
 Options:\n\
   -help : print this text\n\
+  -json : format output in JSON\n\
   -source <source_path> : path to directory with .java files\n\
   -history <file_name> : use history file to avoid repeated messages\n\
   -max_shown_paths <number> : max. shown paths between two sync. methods\n\
@@ -1001,6 +1003,10 @@ int main(int argc, char* argv[])
       int n_cat = items(msg_category_option);
       msg_select_category_option* msg = msg_category_option;  
 
+      if (stricmp(option, "json") == 0 && i+1 < argc) {
+        json_output = true;
+        continue;
+      }
       if (stricmp(option, "source") == 0 && i+1 < argc) {
         source_file_path = argv[++i];
         source_file_path_len = strlen(source_file_path);
